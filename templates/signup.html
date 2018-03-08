@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<link rel="stylesheet" href={{ url_for('static',filename='css/bootstrap.min.css')}}>
+<link rel="stylesheet" href={{ url_for('static',filename='css/style.css')}} type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Quicksand:300,500,700" rel="stylesheet">
+{% block body %}
+{% if login_session['logged_in'] %}
+<p>You're logged in already!</p>
+{% else %}
+
+
+<form action="/signup" method="POST">
+	<div class="login">
+		<div class="login-screen">
+			<div class="app-title">
+				<h1>Sign Up</h1>
+			</div>
+            <div class = 'flash'>
+                  {% with messages = get_flashed_messages() %}
+                {% if messages %}
+
+                  <ul>
+                  {% for message in messages %}
+                      <li> <strong> {{ message }} </strong> </li>
+                  {% endfor %}
+                  </ul>
+                  {% endif %}
+              {% endwith %}
+            </div>
+			<div class="login-form">
+				<div class="row">
+					<section class="control-group col-sm-6">
+						<input type="text" class="login-field" value="" placeholder="First Name" name="firstname">
+						<label class="login-field-icon fui-lock" for="login-pass"></label>
+					</section>
+
+					<section class="control-group col-sm-6">
+						<input type="text" class="login-field" value="" placeholder="Last Name" name="lastname">
+						<label class="login-field-icon fui-lock" for="login-pass"></label>
+					</section>
+
+					<section class="control-group col-sm-4">
+						<input type="text" class="login-field" value="" placeholder="Age" name="age">
+						<label class="login-field-icon fui-lock" for="login-pass"></label>
+					</section>
+
+					<section class="control-group col-sm-8">
+						<select name="gender" class="mysel">
+	  					<option class="myopt" value="" disabled selected>Gender</option>
+	  					<option class="myopt" value="Male">Male</option>
+	  					<option class="myopt" value="Female">Female</option>
+							<option class="myopt" value="Other">Other</option>
+						</select>
+					</section>
+				</div>
+
+
+				<section class="control-group">
+					<input type="email" class="login-field" value="" placeholder="Email" name="email">
+					<label class="login-field-icon fui-user" for="login-name"></label>
+			 	</section>
+
+				<section class="control-group">
+					<input type="text" class="login-field" value="" placeholder="username" name="username">
+					<label class="login-field-icon fui-user" for="login-name"></label>
+			 	</section>
+
+				<section class="control-group">
+					<input type="password" class="login-field" value="" placeholder="password" name="password">
+					<label class="login-field-icon fui-lock" for="login-pass"></label>
+				</section>
+
+				<section class="control-group">
+					<input type="password" class="login-field" value="" placeholder="Confirm Password" name="confirm_password">
+					<label class="login-field-icon fui-lock" for="login-pass"></label>
+				</section>
+
+
+        <input type="submit" value="Sign Up" class="btn btn-primary btn-large btn-block" >
+		    <br>
+				<a href="{{url_for('home')}}" >Back to Home Page</a>
+			</div>
+		</div>
+	</div>
+</form>
+
+{% endif %}
+{% endblock %}
+</html>

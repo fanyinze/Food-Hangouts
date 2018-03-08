@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<!-- Make sure the <html> tag is set to the .full CSS class. Change the background image in the full.css file. -->
+
+<head>
+  <meta charset="utf-8">
+  <title>Food Hangout</title>
+  <link rel="icon" href="data:,">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href={{ url_for('static',filename='css/bootstrap.min.css')}}>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+  <link rel="stylesheet" href={{ url_for('static',filename='css/style__desktop.css')}}>
+  <link rel="stylesheet" href={{ url_for('static',filename='css/building_list.css')}}>
+  <link rel="stylesheet" href={{ url_for('static',filename='css/dashboard.css')}}>
+  <link href="https://fonts.googleapis.com/css?family=Quicksand:300,500,700" rel="stylesheet">
+
+</head>
+
+<body>
+    <!-- Page Content -->
+    <div id="top" class="custom-container">
+    <!--Drop down menu from W3 school available at https://www.w3schools.com/css/tryit.asp?filename=trycss_dropdown_navbar-->
+      <ul>
+        <li class="my-dropdown">
+          <a href="javascript:void(0)" class="my-dropbtn">Menu</a>
+          <div class="my-dropdown-content">
+              <div class="my-nav-heading">
+                <h4></h4>
+                <input data-bind="click: showListings" class="button" id="show-listings" type="button" value="Show Restaurants">
+                <input data-bind="click: hideListings" class="button" id="hide-listings" type="button" value="Hide Restaurants">
+                <hr>
+                <h4>Search Restaurants</h4>
+                <input id="zoom-to-area-text" type="text" data-bind="textInput: userInput" placeholder="Enter your location here">
+                <hr>
+                <h4>Restaurant List</h4>
+              <ul data-bind="foreach: filterMarker">
+                <li class="building-List" data-bind="text: title, click: $parent.setBuilding"></li>
+              </ul>
+          </div>
+        </div>
+        </li>
+        <li class="logout-button"><a href={{url_for('logout')}} >Logout</a></li>
+        <div id='error' class="map-title">
+          <h3>Welcome! {{firstname}} </h3>
+        </div>
+      </ul>
+    <div id="map" class="map-layer"></div>
+  </div>
+
+    <div class="container my-res-background">
+      <div id="exTab2" class="container">
+        <div class="row">
+          <div class="col-sm-12 col-xs-12">
+            <ul class="nav nav-tabs my-nav-tabs">
+                 <li class="active"><a  href="#1" data-toggle="tab" class="my-nav-text">My Restaurant</a></li>
+                 <li><a href="#2" data-toggle="tab" class="my-nav-text">Joined Event</a></li>
+                 <li><a href="#3" data-toggle="tab" class="my-nav-text">Hosted Event</a></li>
+            </ul>
+          </div>
+        </div>
+
+
+        <div class="tab-content ">
+  			  <div class="tab-pane active" id="1">
+            <div class="row">
+              <div class="col-sm-12 col-xs-12 text-center">
+                <a href={{url_for('newRestaurant', user_id = user)}} class='btn btn-info'> Add New Restaurant </a>
+              </div>
+            </div>
+
+            <div class = 'flash text-center'>
+              {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                  <div>
+                  {% for message in messages %}
+                      <br><p> <strong> {{ message }} </strong> </p>
+                  {% endfor %}
+                </div>
+                {% endif %}
+              {% endwith %}
+            </div>
+
+            <div class="row">
+                {% for building in buildings %}
+                    <div class="col-sm-4 col-xs-12 row-m-t">
+                      <div class="card text-left">
+                        <img class="card-img-top my-card-img-size" src={{building.photo_reference}} alt="Card image cap">
+                        <div class="card-block">
+                          <h6 class="card-title">{{building.title}}</h6>
+                          <p class="card-text my-card-text-style">
+                            <!--<h7 class="font-italic">Address</h7><br>-->
+                            {{building.address_street}},
+                            {{building.address_city}},
+                            {{building.address_postal}}<br>
+                            <h7 class="font-italic">Rating:</h7>
+                            {{building.rating}}
+                          </p>
+                        </div>
+                        <div class="card-footer text-center">
+                            <a href={{url_for('check_dashboard', user_id=user, title=building.title, address=building.address_street)}} class="btn btn-primary">Events</a>
+                          <a href={{url_for('deleteRestaurant', user_id=user, title=building.title)}} class="btn btn-warning">Delete</a>
+                        </div>
+                      </div>
+                    </div>
+            	  {% endfor %}
+            </div>
+          </div>
+          <div class="tab-pane" id="2">
+            <div class="container">
+              <div class="row center-row">
+                <div class="[ col-xs-12 col-sm-12 ]">
+                  <p> Your Joined Events</p>
+                  <ul class="event-list">
+                      {% for event in join %}
+                      <li>
+                        <time datetime="2014-07-20 2000">
+          							  <span class="day">{{event.day}}</span>
+            							<span class="month">{{event.char_month}}</span>
+                          <span class="year">{{event.year}}</span>
+          						  </time>
+                        <div class="info">
+                          <span class="desc">Hosted by: <strong>{{event.host}}</strong> </span>
+                          <span class="desc">Party Size: <strong>{{event.party_size}}</strong> </span>
+                          <span class="desc">Time: <strong>{{event.time}}</strong></span>
+                          <p class="desc">Email: <strong>{{event.email}}</strong></p>
+                          <span class="desc">Address: <strong>{{event.title}}, {{event.address}}</strong></span>
+                          <p class="desc">Description: <strong>{{event.description}}</strong></p>
+                        </div>
+                        <div class="social">
+            								  <a href={{url_for('delete_joined_event', user_id=user, title=event.title, address=event.address, time=event.full_time)}}>Remove</a>
+          						  </div>
+                      </li>
+                      {% endfor %}
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane" id="3">
+            <div class="container center-events">
+              <div class="row center-row">
+                <div class="[ col-xs-12 col-sm-12 ]">
+                  <p> Your Hosted Event</p>
+                  <ul class="event-list">
+                    {% for event in host %}
+                    <li>
+                      <time datetime="2014-07-20 2000">
+                        <span class="day">{{event.day}}</span>
+                        <span class="month">{{event.char_month}}</span>
+                        <span class="year">{{event.year}}</span>
+                      </time>
+                      <div class="info">
+                        <p class="desc">Place: <strong>{{event.title}}, {{event.address}}</strong></p>
+                        <p class="desc">Party Size: <strong>{{event.party_size}}</strong> </p>
+                        <p class="desc">Time: <strong>{{event.time}}</strong></p>
+                        <p class="desc">Description: <strong>{{event.description}}</strong></p>
+                      </div>
+                      <div class="social">
+                        <a href={{url_for('delete_host_event', user_id=user, title=event.title, address=event.address, time=event.full_time)}}>Remove</a>
+                      </div>
+                    </li>
+                    {% endfor %}
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+   </div>
+    <!-- jQuery -->
+    <!--bootstrap-->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+    <!--javascript-->
+    <script src={{ url_for('static',filename="js/jquery.js") }}></script>
+
+    <script src={{ url_for('static',filename="js/knockout-3.2.0.js") }}></script>
+
+    <script src={{ url_for('static',filename="js/app.js") }}></script>
+
+    <script type="text/javascript">
+            Model = {{result|tojson}}
+    </script>
+
+    <!--Loading Googlemap API-->
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?libraries=places,geometry,drawing&key=AIzaSyAy1TFwpvr9zdWWWTHn8pxfeDBDM33PyXQ&v=3&callback=initMap" onerror="googleError()">
+    </script>
+
+    <!--The following line is used for testing googlemap API error handling.-->
+    <!--<script async defer
+        src="https://maps.googleapisSUPRISE!.com/maps/api/js?libraries=places,geometry,drawing&key=AIzaSyAy1TFwpvr9zdWWWTHn8pxfeDBDM33PyXQ&v=3&callback=initMap" onerror="googleError()">
+    </script>-->
+
+
+</body>
+
+</html>

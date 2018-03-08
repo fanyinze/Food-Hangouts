@@ -1,0 +1,165 @@
+* {
+  font-family: "Quicksand",sans-serif;
+  font-size: 12px;
+}
+
+html,
+body {
+  font-family: Arial, sans-serif;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  height: 100%;
+  position: relative;
+}
+
+input {
+  font-size: 6px;
+}
+
+h1 {
+  color: #525454;
+  font-size: 11px;
+  margin: 0 0 10px 0;
+  text-align: center;
+}
+
+#hide-listings,
+#show-listings {
+  width: 48%;
+}
+
+#close-button {
+  display: inline-block;
+  float: left
+}
+
+hr {
+  background: #D0D7D9;
+  height: 1px;
+  margin: 20px 0 20px 0;
+  border: none;
+}
+
+#map {
+  position: relative;
+  border-radius: 10px;
+  border: 5px solid #eee;
+  width: 100%;
+  float:left;
+  margin-top:0px;
+  height: 100%;
+
+}
+
+
+#pano {
+  width: 300px;
+  height: 200px;
+}
+
+#places-search,
+#search-within-time-text {
+  width: 84%;
+}
+
+.text {
+  font-size: 6px;
+}
+
+
+#zoom-to-area-text {
+  width: 70%;
+}
+
+#zoom-to-area {
+  width: 24%;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+    color: white;
+}
+
+li {
+    float: left;
+}
+
+.building-List {
+    display: block;
+    float: none;
+}
+
+li a, .dropbtn {
+    display: inline-block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover, .dropdown:hover .dropbtn {
+    background-color: red;
+}
+
+li a:hover, .close-button:hover .dropbtn {
+    background-color: #333;
+}
+
+li.dropdown {
+    display: inline-block;
+}
+
+.map-title {
+    display: inline-block;
+    border-radius: 10px;
+    width: 75%;
+    text-align: center;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    border: 5px solid #333;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: left;
+}
+
+.dropdown-content a:focus {background-color: #f1f1f1}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+    border-radius: 8px;
+}
+
+.nav-heading {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+    color: white;
+}
+
+.button {
+  background-color: #333;
+  color: white;
+  font-size: 11px;
+}

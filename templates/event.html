@@ -1,0 +1,63 @@
+<html>
+
+<head>
+	<link rel=stylesheet type=text/css href={{ url_for('static',filename='css/building_list.css')}}>
+	<link rel="stylesheet" href={{ url_for('static',filename='css/bootstrap.min.css')}}>
+  <link rel="stylesheet" href={{ url_for('static',filename='css/style__desktop.css')}}>
+	<link href="https://fonts.googleapis.com/css?family=Quicksand:300,500,700" rel="stylesheet">
+</head>
+
+<body>
+	<div class="my-background">
+		<div class="container">
+			<div class="row">
+				<div class="my-center">
+					<div class="col-sm-12 col-xs-12">
+						<div class="card text-center my-card-background">
+							<div class="card-block">
+								<h1> Create an event </h1>
+								<div class = 'flash'>
+        					{% with messages = get_flashed_messages() %}
+        					{% if messages %}
+				          		{% for message in messages %}
+				      					<strong> {{ message }} </strong>
+				          		{% endfor %}
+				          {% endif %}
+				      		{% endwith %}
+    						</div>
+								<title>New Event</title>
+								<h2>{{restaurant}}</h2>
+								<h3>{{address}}</h3>
+								<h3>{{user_id}}</h3>
+								<div class='error'>{{error_msg if error_msg != None}}</div>
+								<form action='{{url_for('event_submit', user_id = user_id, title = restaurant, address = address)}}' method='post'>
+									<dl>
+										<dt>Date and Time:</dt>
+	  									<dd><input type="datetime-local" name="time"></dd>
+										<dt>Party Size:</dt>
+											<dd><input type = 'text' size="10" name="party_size"></dd>
+										<dt>Party Info:</dt>
+											<dd><textarea style="width:75%;height:20%;" name="description" maxlength="35"></textarea></dd>
+									</dl>
+
+								<!--<form action="{{ url_for('newRestaurant', user_id=user_id )}}" method = 'post'>
+									<dl>
+										<dt>*Name:</dt>
+											<dd><input type ='text' size='30' name='name'></dd>
+										<dt>Street Address(Optional):</dt>
+											<dd><input type = 'text' size = '30' name='street'></dd>
+										<dt>*City:</dt>
+											<dd><input type = 'text' size = '30' name='city'></dd>
+									</dl>-->
+									<button type='submit' class="btn btn-warning my-button-text-style">Add</button>
+									<a href = '{{url_for('userRestaurant', user_id = user_id)}}' class='btn btn-warning'> Cancel </a>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

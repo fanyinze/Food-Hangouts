@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>
+      Clash of Clan Building Catalog
+    </title>
+    <link rel="stylesheet" type="text/css" href={{ url_for('static', filename='css/building_list.css') }}
+</head>
+<body>
+    <div class="container2">
+      <header class="header__parent">
+        <div class="header__text">
+          <h1>
+            You are not authorized to modify this restaurant
+          </h1>
+
+          <div class ='createbuilding'>
+      			<img class="create__icon" src="https://cdn0.iconfinder.com/data/icons/layout-and-location/24/Untitled-2-01-128.png" alt="back icon">
+      			<a href = '{{url_for('userRestaurant', user_id=user_id)}}'>Back to home page</a>
+      		</div>
+        </div>
+      </header>
+    <main>
+      <div class="image__main">
+        <img class="image__2" src="http://vignette2.wikia.nocookie.net/clashroyale/images/b/b2/Sad_Face.png/revision/latest?cb=20160706235335" alt="This is main image">
+      </div>
+    </main>
+  </div>
+</body>
+</html>

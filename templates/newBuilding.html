@@ -1,0 +1,38 @@
+<html>
+<head>
+	<link rel=stylesheet type=text/css href={{ url_for('static',filename='css/building_list.css')}}>
+	<link rel="stylesheet" href={{ url_for('static',filename='css/bootstrap.min.css')}}>
+  <link rel="stylesheet" href={{ url_for('static',filename='css/style__desktop.css')}}>
+	<link href="https://fonts.googleapis.com/css?family=Quicksand:300,500,700" rel="stylesheet">
+</head>
+
+<body>
+	<div class="my-background">
+		<div class="container">
+			<div class="row">
+				<div class="my-center">
+					<div class="col-sm-12 col-xs-12">
+						<div class="card text-center my-card-background">
+							<div class="card-block">
+								<h1> Add New Restaurant </h1>
+								<form action="{{ url_for('newRestaurant', user_id=user_id )}}" method = 'post'>
+									<dl>
+										<dt>*Name:</dt>
+											<dd><input type ='text' size='30' name='name'></dd>
+										<dt>Street Address(Optional):</dt>
+											<dd><input type = 'text' size = '30' name='street'></dd>
+										<dt>*City:</dt>
+											<dd><input type = 'text' size = '30' name='city'></dd>
+									</dl>
+									<button type='submit'class="btn btn-warning my-button-text-style">Add</button>
+									<a href = '{{url_for('userRestaurant', user_id = user_id)}}' class='btn btn-warning'> Cancel </a>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

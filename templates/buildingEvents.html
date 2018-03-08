@@ -1,0 +1,45 @@
+{% extends "header.html" %}
+{% block content %}
+<div class="dashboard-bg">
+  <div class="container my-dash-background">
+    <div class="row center-row">
+      <div class="[ col-xs-12 col-sm-12 ]">
+        <ul class="event-list">
+          <h3 class="text-center">{{title}}</h3>
+          <h4 class="text-center">{{address}}</h4>
+          <br>
+          {% for event in result %}
+            <li>
+              <time datetime="2014-07-20 2000">
+							  <span class="day">{{event.day}}</span>
+  							<span class="month">{{event.char_month}}</span>
+                <span class="year">{{event.year}}</span>
+						  </time>
+              <div class="info">
+                <span class="desc">Hosted by: <strong>{{event.full_name}}</strong> </span>
+                <span class="desc">Age: <strong>{{event.age}}</strong></span>
+                <span class="desc">Gender: <strong>{{event.gender}}</strong></span>
+                <p class="desc">Email: <strong>{{event.email}}</strong></p>
+                <p class="desc">Time: <strong>{{event.time}}</strong></p>
+                <p class="desc">Description: <strong>{{event.description}}</strong></p>
+              </div>
+              <div class="social">
+  							<ul>
+  								  <a href={{url_for('join_event', user_id=user_id, title=title, address=address, event=event)}} > I'm Going </a>
+  							</ul>
+						  </div>
+            </li>
+          {% endfor %}
+          <div class="col-sm-12 col-xs-12 text-center">
+            <a href={{url_for('newEvent', user_id = user_id, title=title, address=address)}} class='btn btn-info'> New Event </a>
+            <a href={{url_for('userRestaurant', user_id = user_id)}} class='btn btn-primary'> Back </a>
+          </div>
+      </ul>
+    </div>
+  </div>
+  </div>
+</div>
+
+
+
+  {%endblock%}

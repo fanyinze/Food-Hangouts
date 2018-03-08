@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<!-- Make sure the <html> tag is set to the .full CSS class. Change the background image in the full.css file. -->
+
+<head>
+  <meta charset="utf-8">
+  <title>Spacious Study Spots in Campus</title>
+  <link rel="icon" href="data:,">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" media="screen and (min-width:1025px)" href={{ url_for('static',filename='css/style__desktop.css')}}>
+  <link rel="stylesheet" media="screen and (min-width:1025px)" href={{ url_for('static',filename='css/building_list.css')}}>
+  <link rel="stylesheet" media="screen and (max-width:740px)" href={{ url_for('static',filename='css/style__mobile.css')}}>
+  <link rel="stylesheet" media="screen and (min-width:741px) and (max-width:1024px)" href={{ url_for('static',filename='css/style__ipad.css')}}>
+
+</head>
+
+<body>
+    <!-- Page Content -->
+    <div class="container">
+    <!--Drop down menu from W3 school available at https://www.w3schools.com/css/tryit.asp?filename=trycss_dropdown_navbar-->
+      <ul>
+        <li class="dropdown">
+          <a href="javascript:void(0)" class="dropbtn">Menu</a>
+          <div class="dropdown-content">
+              <div class="nav-heading">
+                <h4></h4>
+                <input data-bind="click: showListings" class="button" id="show-listings" type="button" value="Show All Buildings">
+                <input data-bind="click: hideListings" class="button" id="hide-listings" type="button" value="Hide All Buildings">
+                <hr>
+                <h4>Search Buildings</h4>
+                <input id="zoom-to-area-text" type="text" data-bind="textInput: userInput" placeholder="Enter your location here">
+                <hr>
+                <h4>Building List</h4>
+              <ul data-bind="foreach: filterMarker">
+                <li class="building-List" data-bind="text: title, click: $parent.setBuilding"></li>
+              </ul>
+          </div>
+        </div>
+        </li>
+        <li class="logout-button"><a href={{url_for('logout')}} >Logout</a></li>
+        <div id='error' class="map-title">
+          <h3>Welcome! {{user}} </h3>
+        </div>
+      </ul>
+    <div id="map"></div>
+  </div>
+
+    <!-- jQuery -->
+    <!--<script src="/static/js/jquery.js"></script>-->
+
+
+    <script src={{ url_for('static',filename="js/jquery.js") }}></script>
+
+    <script src={{ url_for('static',filename="js/knockout-3.2.0.js") }}></script>
+
+    <script src={{ url_for('static',filename="js/app.js") }}></script>
+
+    <script type="text/javascript">
+            Model = {{result|tojson}}
+    </script>
+
+    <!--Loading Googlemap API-->
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?libraries=places,geometry,drawing&key=AIzaSyAy1TFwpvr9zdWWWTHn8pxfeDBDM33PyXQ&v=3&callback=initMap" onerror="googleError()">
+    </script>
+
+    <!--The following line is used for testing googlemap API error handling.-->
+    <!--<script async defer
+        src="https://maps.googleapisSUPRISE!.com/maps/api/js?libraries=places,geometry,drawing&key=AIzaSyCgCgtpBMs9xiCVSS1C1thQk_w6u_vd55E&v=3&callback=initMap" onerror="googleError()">
+    </script>-->
+
+
+</body>
+
+</html>

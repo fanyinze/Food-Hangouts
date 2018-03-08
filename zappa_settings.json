@@ -1,0 +1,17 @@
+{
+    "dev": {
+       "debug": true,
+       "s3_bucket": "your s3",
+       "app_function": "run.app",
+       "parameter_depth": 1,
+       "project_name": "flask_zappa",
+       "keep_warm": false,
+       "log_level": "DEBUG",
+       "http_methods": ["GET","POST"],
+       "timeout_seconds": 300,
+       "memory_size": 128,
+       "use_precompiled_packages": true,
+       "certificate_arn": "your arn",
+       "domain": "your domain"
+    }
+}

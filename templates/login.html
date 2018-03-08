@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>
+        User Log In
+    </title>
+    <link rel="stylesheet" href={{ url_for('static',filename='css/bootstrap.min.css')}}>
+    <link rel="stylesheet" href={{ url_for('static',filename='css/style.css')}} type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Quicksand:300,500,700" rel="stylesheet">
+</head>
+<body>
+{% block body %}
+{% if login_session['logged_in'] %}
+<p>You're logged in already!</p>
+{% else %}
+
+<form action="/login" method="POST">
+	<div class="login">
+		<div class="login-screen">
+			<div class="app-title">
+				<h1>Login</h1>
+			</div>
+			<div class = 'flash'>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+
+          <ul>
+          {% for message in messages %}
+              <li> <strong> {{ message }} </strong> </li>
+          {% endfor %}
+          </ul>
+          {% endif %}
+      {% endwith %}
+    </div>
+		<div class="login-form">
+			<div class="control-group">
+			<input type="text" class="login-field" value="" placeholder="username" name="username">
+			<label class="login-field-icon fui-user" for="login-name"></label>
+			</div>
+
+			<div class="control-group">
+			<input type="password" class="login-field" value="" placeholder="password" name="password">
+			<label class="login-field-icon fui-lock" for="login-pass"></label>
+			</div>
+
+      <div class="row">
+        <div class="col-sm-6 col-xs-12">
+          <button type="submit" class="btn btn-primary">Login</button>
+        </div>
+        <div class="col-sm-6 col-xs-12">
+          <a href='{{url_for('showSignup')}}'class="btn btn-primary">Sign up</a>
+        </div>
+      </div>
+    </div>
+	 </div>
+  </div>
+</div>
+</form>
+
+{% endif %}
+{% endblock %}
+</body>
+</html>
