@@ -16,10 +16,10 @@ from boto3.dynamodb.conditions import Key, Attr
 #dynamodb = boto3.resource('dynamodb', region_name='us-east-1', endpoint_url="http://localhost:8000")
 dynamodb = boto3.resource('dynamodb', region_name='us-east-1')
 app = Flask(__name__)
-app.secret_key = 'super secret key'
+app.secret_key = '#super secret key#'
 
-gmaps = googlemaps.Client(key='your key')
-password_key = ''
+gmaps = googlemaps.Client(key='#your key#')
+password_key = '#your password key#'
 
 
 # Create route and function to display home page
