@@ -462,7 +462,6 @@ def deleteRestaurant(user_id, title):
 
 @app.route('/restaurant/<string:user_id>/<string:title>/<string:address>/<string:time>delete_join', methods=['GET', 'POST'])
 def delete_joined_event(user_id, title, address, time):
-    print('caonimacaonima')
     print(time)
     # Check User DB
     user = user_id
