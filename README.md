@@ -1,6 +1,7 @@
 # FoodHangouts
 
 ### A Serverless Online Event Organizer 
+#### This project is live at [https://www.fanyinze.com](https://www.fanyinze.com)
 - Provides event management services for restaurants in Toronto.
 - Deployed using AWS Lambda and API Gateway.
 - Flask based backend, integrated with DynamoDB and S3 cloud storage for user authentication and event information.
